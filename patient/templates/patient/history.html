@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 hero-header mb-5">
+        <div class="row py-3">
+            <div class="col-12 text-center">
+                <h1 class="display-3 text-white animated zoomIn">Your Appointments</h1>
+                <a href="{% url 'patient:index' %}" class="h4 text-white">Home</a>
+                <i class="far fa-circle text-white px-2"></i>
+                <a href="{% url 'patient:appointment_history' %}" class="h4 text-white">Appointment History</a>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+    <div class="container-fluid py-5 text-center">
+        <h1 class="mb-5">Your Appointments</h1>
+        <div class="container">
+            <div class="row g-5">
+                {% for appointment in appointments %}
+                    <div class="col-lg-4 wow slideInUp" data-wow-delay={{doctor.class_name}}>
+                        <div class="team-item">
+                            <div class="team-text position-relative bg-light text-center rounded-bottom p-4 pt-5">
+                                <h4 class="mb-2">{{appointment.user_name}}</h4>
+                                <ol class="text-start">
+                                    <li class="text-primary">Username: {{appointment.name}}</li>
+                                    <li class="text-primary">Servie: {{appointment.service}}</li>
+                                    <li class="text-primary">Doctor: Dr. {{appointment.doctor}}</li>
+                                    <li class="text-primary">Email: {{appointment.email}}</li>
+                                    <li class="text-primary">Day: {{appointment.app_date}}</li>
+                                    <li class="text-primary">Time: {{appointment.app_time}}</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
